@@ -1,0 +1,20 @@
+defaults:
+  - _self_
+  - gan_arch: dcgan  # or wgan
+  - dataset: mnist   # or toy, fashion_mnist
+
+_target_: emgen.generative_model.gan.gan_model.GANModel
+device: ${device}
+gan_type: dcgan
+latent_dim: 100
+clip_value: 0.01  # For WGAN
+
+train:
+  train_batch_size: 128
+  eval_batch_size: 64
+  num_epochs: 100
+  learning_rate: 0.0002
+
+  save_images_step: 10
+  no_of_diff_samples_to_save: 36
+

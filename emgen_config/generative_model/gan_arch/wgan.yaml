@@ -1,0 +1,19 @@
+# Generator config
+generator:
+  _target_: emgen.generative_model.gan.gan_model_arch.WGANGenerator
+  device: ${device}
+  latent_dim: 100
+  out_channels: 1  # will be overridden based on dataset
+  hidden_dim: 64
+  img_size: 28  # will be overridden based on dataset
+  weights: null
+
+# Discriminator config
+discriminator:
+  _target_: emgen.generative_model.gan.gan_model_arch.WGANDiscriminator
+  device: ${device}
+  in_channels: 1  # will be overridden based on dataset
+  hidden_dim: 64
+  weights: null
+
+  

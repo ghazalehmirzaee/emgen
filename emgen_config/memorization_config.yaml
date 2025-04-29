@@ -1,0 +1,10 @@
+defaults:
+  - _self_
+  - generative_model: diffusion
+
+experiment_name: memorization_evaluation
+device: cuda
+
+# Memorization evaluation settings
+k: 50  # Number of nearest neighbors
+alpha: 0.5  # Scaling factor

@@ -1,0 +1,35 @@
+defaults:
+  - _self_
+
+experiment_name: mnist_diffusion
+device: cuda
+
+generative_model:
+  _target_: emgen.generative_model.diffusion.diffusion_model.DiffusionModel
+  device: cuda
+
+  noise_scheduler:
+    _target_: emgen.generative_model.diffusion.noise_scheduler.NoiseScheduler
+    device: ${device}
+    num_timesteps: 1000
+    beta_schedule: cosine
+
+  diffusion_arch:
+    _target_: emgen.generative_model.diffusion.diffusion_model_arch.UNetArch
+    device: ${device}
+    in_channels: 1
+    base_channels: 64
+    num_down: 2
+
+  dataset:
+    _target_: emgen.dataset.mnist.MNISTDataset
+    train: true
+
+  train:
+    train_batch_size: 128
+    eval_batch_size: 64
+    num_epochs: 300
+    learning_rate: 1e-3
+    save_images_step: 5
+    no_of_diff_samples_to_save: 36
+

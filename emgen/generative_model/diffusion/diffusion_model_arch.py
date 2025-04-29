@@ -309,3 +309,4 @@ class Up1DBlock(nn.Module):
         h = self.conv(x)
         t_bias = self.time_mlp(t_emb).view(h.shape[0], -1, 1)
         return h + t_bias
+
