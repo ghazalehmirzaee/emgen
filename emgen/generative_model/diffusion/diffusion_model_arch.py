@@ -114,7 +114,7 @@ class UNetArch(nn.Module):
         if weights is not None:
             state_dict = torch.load(weights, map_location=self.device)
             self.load_state_dict(state_dict)
-            log.info(f"Loaded weights from {weights} into LinearArch")
+            log.info(f"Loaded weights from {weights} into UnetArch")
    
     
     def forward(self, x, t):

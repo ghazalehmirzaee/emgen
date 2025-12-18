@@ -115,6 +115,7 @@ class DiffusionModel():
                     if eb==0:
                         sample_out_dir = self.out_dir/f"train_epoch_{epoch:02d}"
                         sample_out_dir.mkdir(parents=True, exist_ok=True)
+                        torch.save(self.diffusion_arch.state_dict(), self.out_dir/f"train_epoch_{epoch:02d}/diffusion_arch.pth")
                         
                         #! Plotting
                         # If Image Data
@@ -124,7 +125,7 @@ class DiffusionModel():
                                 sample_out_dir, 
                                 self.train_config.no_of_diff_samples_to_save,     
                             )
-                            break # dont generate all the data samples if image data
+                            break #TODO: dont generate all the data samples if image data, not good to use break!
                         # If 2D Data
                         elif len(sample_out['intermediate_samples'].shape) == 3:
                             plot_2d_intermediate_samples(
@@ -132,7 +133,6 @@ class DiffusionModel():
                                 sample_out_dir, 
                                 self.train_config.no_of_diff_samples_to_save,     
                             )
-                        torch.save(self.diffusion_arch.state_dict(), self.out_dir/f"train_epoch_{epoch:02d}/diffusion_arch.pth")
                     
                 
                 # If Image Data

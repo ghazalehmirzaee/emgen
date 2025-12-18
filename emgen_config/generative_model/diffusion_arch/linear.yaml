@@ -6,4 +6,4 @@ input_emb: sinusoidal
 time_emb: sinusoidal
 hidden_size: 128
 hidden_layers: 3
-weights: /home/rashik_shrestha/ws/emgen/outputs/2025-04-04/19-05-16/train_epoch_199/diffusion_arch.pth
+weights: null

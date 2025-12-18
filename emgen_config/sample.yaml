@@ -1,10 +1,6 @@
-defaults:
-  - _self_
-  - diffusion_arch: unet  # or unet, unet1d
-  - dataset: mnist            # or mnist
 
 _target_: emgen.generative_model.diffusion.diffusion_model.DiffusionModel
-device: ${device}
+device: cuda
 
 noise_scheduler:
   _target_: emgen.generative_model.diffusion.noise_scheduler.NoiseScheduler
@@ -15,6 +11,21 @@ noise_scheduler:
   beta_schedule: cosine
   deterministic_sampling: false
   eta: 0 # DDIM stochasticity
+
+diffusion_arch: # or unet, unet1d
+  _target_: emgen.generative_model.diffusion.diffusion_model_arch.UNetArch
+  device: ${device}
+  emb_size: 128
+  time_emb: sinusoidal
+  in_channels: 1
+  base_channels: 64
+  num_down: 2
+  weights: null
+  
+
+dataset:
+  _target_: emgen.dataset.mnist.MNISTDataset
+  train: true
 
 train:
   train_batch_size: 32

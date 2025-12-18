@@ -1,0 +1,10 @@
+defaults:
+  - default
+  - _self_
+
+device: cuda
+seed: 42
+
+# generative_model:
+#   train:
+#     eval_batch_size: 3
